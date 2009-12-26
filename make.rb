@@ -143,10 +143,9 @@ def compile(*args)
     if params[:i].nil?
         # Add the rule's dependencies as inputs
         params[:i] = mfr.dependencies.find_all { |d| not d.has_suffix(".h") }
-    else
-        # Turn an individual string into a list
-        params[:i] = [params[:i]].flatten.join " "
     end
+    # Turn an individual string into a list
+    params[:i] = [params[:i]].flatten.join " "
     params[:o] = "-o #{params[:o]}" unless params[:o] == ""
     params[:flags] = params[:flags].join " "
     mfr.compile params
